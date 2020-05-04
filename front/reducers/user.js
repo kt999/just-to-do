@@ -1,10 +1,15 @@
 export const initialState = {
     isLoggedIn : false,
+    loginFailureMessage:null,
     userInfo : {},
 };
 
-export const LOG_IN = 'LOG_IN';
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
+export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
+
+
+
 export const LOG_OUT = 'LOG_OUT';
 
 
@@ -21,11 +26,26 @@ export const logoutAction = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOG_IN: {
+        case LOG_IN_REQUEST: {
+            return {
+                ...state,
+                isLoggedIn : false,
+                loginFailureMessage : null,
+            }
+        }
+        case LOG_IN_SUCCESS: {
             return {
                 ...state,
                 isLoggedIn: true,
                 userInfo : action.data,
+                loginFailureMessage : null,
+            }
+        }
+        case LOG_IN_FAILURE: {
+            return {
+                ...state,
+                isLoggedIn: false,
+                loginFailureMessage : action.data.message,
             }
         }
         case LOG_OUT: {

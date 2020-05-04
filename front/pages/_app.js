@@ -8,8 +8,10 @@ import PropTypes from "prop-types";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from "../sagas";
 
-import { DatePicker } from 'antd';
-import 'antd/dist/antd.css';
+import { CookiesProvider } from 'react-cookie';
+
+import '../public/css/toDoList.css';
+
 
 import { Provider } from 'react-redux';
 import reducer from '../reducers';
@@ -19,12 +21,16 @@ const NodeBird = ({Component,store}) => {
     return (
         <>
             <Provider store = {store}>
-                <Head>
-                    <title>kt999</title>
-                </Head>
-                <AppLayout>
-                    <Component/>
-                </AppLayout>
+                <CookiesProvider>
+
+                    <Head>
+                        <title>Just To Do</title>
+                    </Head>
+                    <AppLayout>
+                        <Component/>
+                    </AppLayout>
+
+                </CookiesProvider>
             </Provider>
         </>
     )

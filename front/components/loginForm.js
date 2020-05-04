@@ -1,8 +1,10 @@
-import React, {useCallback, useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {LOG_IN_REQUEST} from "../reducers/user";
 
 const LoginForm = () => {
+
+    const {loginFailureMessage} = useSelector(state => state.user);
 
     const dispatch = useDispatch();
 
@@ -25,7 +27,6 @@ const LoginForm = () => {
             data: {
                 email : email,
                 password : password,
-                nickname : "kt999"
             }
         });
 
@@ -39,6 +40,7 @@ const LoginForm = () => {
                     <br />
                     <input type="password" placeholder="password" value={password} onChange={onChangePassword}/>
                     <button type="submit">login</button>
+                    {loginFailureMessage && <h1>{loginFailureMessage}</h1>}
                 </form>
             </div>
         </>

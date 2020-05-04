@@ -1,0 +1,8 @@
+.all {
+    border: 1px solid red;
+}
+.todo_content_yet{
+}
+.todo_content_done{
+    text-decoration:line-through red;
+}
